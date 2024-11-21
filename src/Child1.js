@@ -17,32 +17,7 @@ class Child1 extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.csv_data) // Use this data as default. When the user will upload data this props will provide you the updated data
-  
-    // Setting up SVG
-    const margin = {top: 50, bottom: 50, right: 50, left: 50}
-    const width = 600;
-    const height = 500;
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-    
-    const svg = d3.select('#mysvg')
-      .select('g')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-    // Axis setup
-    svg.selectAll('.x-axis')
-      .data([0])
-      .join('g')
-      .attr('class',  'x-axis')
-      .attr('transform', `translate(0, ${innerHeight})`)
-    
-    svg.selectAll('.y-axis')
-      .data([0])
-      .join('g')
-      .attr('class', 'y-axis')
-
-    
+    console.log(this.props.csv_data) // Use this data as default. When the user will upload data this props will provide you the updated data    
     this.updateModel(this.props.csv_data);
   }
 
@@ -66,7 +41,8 @@ class Child1 extends Component {
     const innerHeight = height - margin.top - margin.bottom;
 
     const svg = d3.select('#mysvg')
-      .select('g');
+      .select('g')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     // Tooltip
     const tooltip = d3.select('body')
@@ -86,11 +62,23 @@ class Child1 extends Component {
       .range([innerHeight, 0])
 
     // Create Axis
-    svg.select('.x-axis')
-      .call(d3.axisBottom(xScale));
-
-    svg
-      .select('.y-axis').call(d3.axisLeft(yScale));
+    svg.selectAll('.x-axis')
+      .data([0])
+      .join('g')
+      .attr('class',  'x-axis')
+      .attr('transform', `translate(0, ${innerHeight})`)
+      .call(d3.axisBottom(xScale))
+      .selectAll('text')
+      .attr('transform', 'rotate(45)')
+      .attr('text-anchor', 'start')
+      .style('font-size', '12px');
+    
+    svg.selectAll('.y-axis')
+      .data([0])
+      .join('g')
+      .attr('class', 'y-axis')
+      .call(d3.axisLeft(yScale))
+      .style('font-size', '12px');
 
     // Create line generators for open and close data
     const openLineGen = d3.line()
