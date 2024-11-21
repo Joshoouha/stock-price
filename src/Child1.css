@@ -1,0 +1,45 @@
+.company-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.month-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.chart {
+  display: flex;
+  justify-content: center;
+}
+.open-line {
+  stroke: #b2df8a;
+  fill: none;
+  stroke-width: 3;
+}
+.close-line {
+  stroke: #e41a1c;
+  fill: none;
+  stroke-width: 3;
+}
+.open-circle {
+  fill: #b2df8a;
+}
+.close-circle {
+  fill: #e41a1c;
+}
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 0px;
+  border-radius: 5px;
+  height: 115px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font: 12px sans-serif;
+  color: white;
+  pointer-events: none;
+  display: none;
+}
